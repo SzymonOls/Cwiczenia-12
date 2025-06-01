@@ -1,6 +1,6 @@
 ﻿namespace EFTest.DTOs;
 
-public class PaginatedTripsDto
+public class TripsDto
 {
     public int PageNum { get; set; }
     public int PageSize { get; set; }
