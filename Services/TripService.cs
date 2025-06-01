@@ -10,7 +10,7 @@ public class TripService : ITripService
         private readonly AppDbContext _context;
         public TripService(AppDbContext context) => _context = context;
 
-        public async Task<PaginatedTripsDto> GetTrips(int page, int pageSize)
+        public async Task<TripsDto> GetTrips(int page, int pageSize)
         {
             var totalCount = await _context.Trips.CountAsync();
             var totalPages = (int)Math.Ceiling(totalCount / (double)pageSize);
@@ -32,7 +32,7 @@ public class TripService : ITripService
                     Clients = t.ClientTrips.Select(ct => new ClientDto { FirstName = ct.Client.FirstName, LastName = ct.Client.LastName }).ToList()
                 }).ToListAsync();
 
-            return new PaginatedTripsDto
+            return new TripsDto
             {
                 PageNum = page,
                 PageSize = pageSize,
